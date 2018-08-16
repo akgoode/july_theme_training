@@ -1,0 +1,25 @@
+<div class="my-module">
+    <h2>My New Module</h2>
+    <p>{{ model }}</p>
+    <p>{{ test }}</p>
+
+    <ul id="{% block id-prefix %}{% endblock id-prefix %}numberlist">
+        {% for element in array|split(" ") %}
+            <li>{{ element|multiply(2) }}</li>
+        {% endfor %}
+    </ul>
+    {{ themeSettings.extendedPropertyParameters|safe }}
+
+    {% if pageContext.themeId = "xxx" %}
+    blah
+    {% endif %}
+
+    {% if pageContext.isMobile %}
+        <p>This is a mobile page</p>
+    {% endif %}
+
+    {% if pageContext.isEditMode %}
+        <p>Edit Mode</p>
+    {% endif %}
+    <script src="{{ themeSettings.customThemeText }}"></script>
+</div>

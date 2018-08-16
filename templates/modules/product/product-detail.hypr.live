@@ -5,6 +5,16 @@
 </div>
 {% endif %}
 
+<ul>
+  {% for category in model.categories %}
+    {% with category.content as content %}
+      <li>{{ content.name }}</li>
+      <li>{{ content.slug }}</li>
+    {% endwith %}
+  {% endfor %}
+</ul>
+
+
 {% if model.options and model.options.length > 0 %}
 <div class="mz-productdetail-options mz-l-stack-section">
   <h4 class="mz-l-stack-sectiontitle">{{ labels.options }}</h4>

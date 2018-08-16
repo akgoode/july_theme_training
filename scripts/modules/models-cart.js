@@ -53,7 +53,7 @@
     Cart = Backbone.MozuModel.extend({
         mozuType: 'cart',
         handlesMessages: true,
-        helpers: ['isEmpty','count'],
+        helpers: ['isEmpty','count', 'exceedsPurchaseLimit'],
         relations: {
             items: Backbone.Collection.extend({
                 model: CartItem
@@ -67,15 +67,22 @@
         isEmpty: function() {
             return this.get("items").length < 1;
         },
+        exceedsPurchaseLimit: function () {
+            // logic here
+        },
         count: function() {
             return this.apiModel.count();
             //return this.get("Items").reduce(function(total, item) { return item.get('Quantity') + total; },0);
         },
         toOrder: function() {
-            var me = this;
-            me.apiCheckout().then(function(order) {
-                me.trigger('ordercreated', order);
-            });
+            var me = this,
+            isValid = this.get('isValid');
+            console.log('toorder', isValid);
+            if(isValid) {
+                me.apiCheckout().then(function(order) {
+                    me.trigger('ordercreated', order);
+                });
+            }
         },
         removeItem: function (id) {
             return this.get('items').get(id).apiModel.del();

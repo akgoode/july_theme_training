@@ -117,7 +117,10 @@
                 {% block body-content %}
                 {% dropzone "body" scope="page" %}
                 {% endblock body-content %}
-                
+
+                {% block mid-content %}
+                {% endblock mid-content %}
+                                
                 {% block body-below-content %}
                 {% dropzone "body-bottom" scope="template" %}
                 {% endblock body-below-content %}

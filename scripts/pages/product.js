@@ -1,4 +1,4 @@
-﻿require(["modules/jquery-mozu", "underscore", "hyprlive", "modules/backbone-mozu", "modules/cart-monitor", "modules/models-product", "modules/views-productimages",  "hyprlivecontext"], function ($, _, Hypr, Backbone, CartMonitor, ProductModels, ProductImageViews, HyprLiveContext) {
+﻿require(["modules/jquery-mozu", "underscore", "hyprlive", "modules/backbone-mozu", "modules/cart-monitor", "modules/models-product", "modules/views-productimages",  "hyprlivecontext", "modules/api"], function ($, _, Hypr, Backbone, CartMonitor, ProductModels, ProductImageViews, HyprLiveContext, api) {
 
     var ProductView = Backbone.MozuView.extend({
         templateName: 'modules/product/product-detail',
@@ -88,6 +88,7 @@
     $(document).ready(function () {
 
         var product = ProductModels.Product.fromCurrent();
+        product.set('customdata', 'adfasdfsfdas');
 
         product.on('addedtocart', function (cartitem) {
             if (cartitem && cartitem.prop('id')) {
@@ -95,7 +96,7 @@
                 CartMonitor.addToCount(product.get('quantity'));
                 window.location.href = (HyprLiveContext.locals.siteContext.siteSubdirectory||'') + "/cart";
             } else {
-                product.trigger("error", { message: Hypr.getLabel('unexpectedError') });
+                product.trigger("error", { message: "Unable to add to cart for x reason" });
             }
         });
 
@@ -117,6 +118,12 @@
         window.productView = productView;
 
         productView.render();
+
+        var data = {
+            productCode: productView.model.get('productCode')
+        };
+        api.request('POST', '/customfunction', data)
+            .then(console.log);
 
     });
 

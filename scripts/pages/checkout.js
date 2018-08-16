@@ -493,7 +493,6 @@ require(["modules/jquery-mozu", "underscore", "hyprlive", "modules/backbone-mozu
     };
 
     $(document).ready(function () {
-
         var $checkoutView = $('#checkout-form'),
             checkoutData = require.mozuData('checkout');
 

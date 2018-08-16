@@ -4,10 +4,21 @@
 
 {% block body-tag-classes %} mz-homepage {% endblock body-tag-classes %}
 
+{% block body-below-content %}
+    <h2>TEST</h2>
+{% endblock body-below-content %}
+
 {% block body-content %}
     {% dropzone "home" scope="template" %}
     {% dropzone "home2" scope="page" %}
+    {% set_var testarray="1 2 3 4 5 6 7 8" %}
+    
+    
+    {% include "modules/home/homemodule" with model="variable" test="testvariable" array=testarray %}
+    {% include "modules/home/homemodule2" with model="module2" test="testvariable2" array=testarray %}
+
 {% endblock body-content %}
 
-{% block body-below-content %}
-{% endblock body-below-content %}
+{% block mid-content %}
+{% endblock mid-content %}
+

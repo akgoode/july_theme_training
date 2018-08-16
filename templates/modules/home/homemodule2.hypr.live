@@ -1,0 +1,5 @@
+{% extends "modules/common/mymodule" %}
+
+{% block id-prefix %}
+    homemodule2-
+{% endblock id-prefix %}

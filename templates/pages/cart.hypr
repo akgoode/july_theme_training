@@ -30,4 +30,7 @@
         </table>
 	</form>
 </div>
+{% if pageContext.isEditMode %}
+	{% dump model %}
+{% endif %}
 {% endblock body-content %}

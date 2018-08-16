@@ -157,8 +157,9 @@ define(['modules/backbone-mozu', 'underscore', 'modules/jquery-mozu', 'modules/m
     /* end visa checkout */
 
     $(document).ready(function() {
-        var cartModel = CartModels.Cart.fromCurrent(),
-            cartViews = {
+        var cartModel = CartModels.Cart.fromCurrent();
+        cartModel.set('isValid', false);
+            var cartViews = {
 
                 cartView: new CartView({
                     el: $('#cart'),
@@ -167,10 +168,9 @@ define(['modules/backbone-mozu', 'underscore', 'modules/jquery-mozu', 'modules/m
                 })
 
             };
-
         cartModel.on('ordercreated', function (order) {
             cartModel.isLoading(true);
-            window.location = (HyprLiveContext.locals.siteContext.siteSubdirectory||'') + '/checkout/' + order.prop('id');
+             window.location = (HyprLiveContext.locals.siteContext.siteSubdirectory||'') + '/checkout/' + order.prop('id');
         });
 
         cartModel.on('sync', function() {

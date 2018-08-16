@@ -9,8 +9,9 @@
       baseUrl: "{{ siteContext.cdnPrefix }}{% if not debugMode %}/compiled{% endif %}/scripts",
       paths: {
         jquery: "//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery{% if not debugMode %}.min{% endif %}",
-		underscore: "vendor/underscore/underscore",
-		backbone: "vendor/backbone/backbone"
+		    underscore: "vendor/underscore/underscore",
+        backbone: "vendor/backbone/backbone",
+        azure: "vendor/azure-storage/lib/azure-storage"
       }
   });
   {% if debugMode %}

@@ -1,8 +1,9 @@
 /**
  * Adds a login popover to all login links on a page.
  */
+
 define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modules/jquery-mozu=jQuery]>jQuery=jQuery]>jQuery', 'modules/api', 'hyprlive', 'underscore', 'hyprlivecontext', 'vendor/jquery-placeholder/jquery.placeholder'],
-     function ($, api, Hypr, _, HyprLiveContext) {
+    function ($, api, Hypr, _, HyprLiveContext) {
 
     var usePopovers = function() {
         return !Modernizr.mq('(max-width: 480px)');
@@ -286,6 +287,7 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
                     },
                     password: this.$parent.find('[data-mz-signup-password]').val()
                 };
+                
             if (this.validate(payload)) {   
                 //var user = api.createSync('user', payload);
                 this.setLoading(true);
